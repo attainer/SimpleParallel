@@ -19,7 +19,7 @@ void Scheduller::parallel_for(start, end, task[, partitioner = DynamicPartitione
   * `int end` End Index + 1 of task.
   * `void(*task)(int)` Function to do. This function will be call in threads with integer parameters from **start** to **end - 1**
   * `IPartitioner partitioner` Partitioner object distribute indices to each threads. You can use `StaticPartitioner::get()` or `DynamicPartitioner::get()`
-    * `StaticPartitioner` distribute tasks by count. All threads get same number of tasks. It spend very little time for scheduling. But if there is a one threads not the ended, all other threads are stop together.
+    * `StaticPartitioner` distribute tasks by count. All threads get same number of tasks. It spend very little time for scheduling. But  although there are sleeping threads and one thread is not ended, the sleeping threads just wait finishing.
     * `DynamicPartitioner` distribute tasks dynamically. It spend a little time for scheduling during parallel processing. But tasks will be distributed to a suitable thread dynamically.
     * Both partitioner use **lockfree** algorithm.
 
