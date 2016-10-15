@@ -67,9 +67,9 @@ You can easily make your own partitioner. Just inherit IPartitioner and implemen
 
 #Performance
 
-You must check processing time before you use simpleParrallel. This is test for processing performance.cpp
+You must check processing time before you use simpleParrallel. This is processing time for performance.cpp
 
-This is a result in 3-core CPU.
+This is a result on 3-core CPU.
 
 ```
 Serial processing
