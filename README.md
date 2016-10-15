@@ -47,9 +47,9 @@ main()
 }
 ```
 
-#partitioner
+#Partitioner
 
-Partitional make a decision how to distribute tasks.
+Partitioner make a decision how to distribute tasks.
 
 ```cmake
 class IPartitioner
