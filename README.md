@@ -9,24 +9,24 @@ This is a simple parallel programming library for c++. You can easily modify to 
 using namespace SimpleParallel;
 ```
 
-Scheduler::Scheduler([numThread = std::thread::hardware_concurrency])
+* Scheduler::Scheduler([numThread = std::thread::hardware_concurrency])
 
-> Make new parallel scheduler.
+  * Make new parallel scheduler.
 
-* `size_t numThread` The number of threads. Threads are created when Scheduler's contructor be called.
+    * `size_t numThread` The number of threads. Threads are created when Scheduler's contructor be called.
 
 ```c++
 static SimpleParallel::Scheduler parallel;
 ```
 
-void Scheduller::parallel_for(start, end, task[, partitioner = DynamicPartitioner::get()])
+* void Scheduller::parallel_for(start, end, task[, partitioner = DynamicPartitioner::get()])
 
-> Run task in parallel.
+  * Run task in parallel.
 
-* `int start` Start Index of task
-* `int end` End Index + 1 of task.
-* `void(*task)(int)` Function to do. This function will be call in threads with integer parameters from **start** to **end - 1**
-* `IPartitioner partitioner` Partitioner object distribute indices to each threads. You can use DynamicPartitioner::get() or StaticPartitioner::get()
+    * `int start` Start Index of task
+    * `int end` End Index + 1 of task.
+    * `void(*task)(int)` Function to do. This function will be call in threads with integer parameters from **start** to **end - 1**
+    * `IPartitioner partitioner` Partitioner object distribute indices to each threads. You can use DynamicPartitioner::get() or StaticPartitioner::get()
 
 ```c++
 static SimpleParallel::Scheduler parallel;
@@ -42,9 +42,9 @@ parallel.parallel_for(0, 1000, [&a, &b](int i)
 //now a is [3, 5, 7, 9, ....]
 ```
 
-size_t Scheduler::getNumThreads();
+* size_t Scheduler::getNumThreads();
 
-> Return a number of threads.
+    * Return a number of threads.
 
 ```c++
 static SimpleParallel::Scheduler parallel;
@@ -54,9 +54,9 @@ parallel.getNumThreads();
 //return a number of threads. Default is the number of your cpus;
 ```
 
-static size_t Scheduler::getCurrentThreadIndex();
+* static size_t Scheduler::getCurrentThreadIndex();
 
-> Return a index of current CPU
+    * Return a index of current CPU
 
 ```c++
 static SimpleParallel::Scheduler parallel;
