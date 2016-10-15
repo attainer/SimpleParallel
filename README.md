@@ -36,7 +36,7 @@ main()
     }
   });
   
-  //or use can use static partitioner
+  //parallel processing using static partitioner
   parallel.parallel_for(0, size, [&a, &counts](int i) {
     if (is_prime(a[i]))
     {
