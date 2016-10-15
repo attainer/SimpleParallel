@@ -18,7 +18,5 @@ namespace SimpleParallel
 	private:
 		std::vector<int> m_currentIndexes;
 		std::vector<int> m_endIndexes;
-
-		size_t m_numThreads;
 	};
 }

@@ -21,8 +21,6 @@ namespace SimpleParallel
 
 	void StaticPartitioner::ready(int start, int end, size_t numThreads)
 	{
-		m_numThreads = numThreads;
-
 		if (m_currentIndexes.size() < numThreads)
 		{
 			m_currentIndexes.resize(numThreads);
