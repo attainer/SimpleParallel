@@ -67,29 +67,26 @@ getNext() is called to get next task index. You must design it thread safely.
 
 #Performance
 
-SimpleParallel is little "slow" then openMP and PPL. you must check processing time before you use simpleParrallel. Test the performance.cpp
+You must check processing time before you use simpleParrallel. This is test for processing performance.cpp
 
 This is a result in 3-core CPU.
 
-```
-Serial processing
-primes: 123284
-elapsed time: 6558ms
+```Serial processing
+primes: 123149
+elapsed time: 6877ms
 
 SimpleParallel
-primes: 123284
-elapsed time: 2282ms
+primes: 123149
+elapsed time: 2266ms
 
 OpenMP
-primes: 123284
-elapsed time: 2253ms
+primes: 123149
+elapsed time: 2279ms
 
 PPL
-primes: 123284
-elapsed time: 2264ms
+primes: 123149
+elapsed time: 2255ms
 ```
-
-In 3-core CPU, result is like this.
 
 
 
