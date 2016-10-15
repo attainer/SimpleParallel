@@ -3,7 +3,7 @@ This is a simple parallel library. You can easilly modify to fit your projects.
 
 # Usage
 
-```cmake
+```c++
 #include "SimpleParallel.h"
 
 void Scheduler::parallel_for(int start, int end, std::function<void(int)> task, IPartitioner* partitioner = DynamicPartitioner::get());
@@ -11,8 +11,8 @@ size_t Scheduler::getNumThreads();
 static size_t Scheduler::getCurrentThreadIndex();
 ```
 
-#example
-```cmake
+#Example
+```c++
 
 #include "SimpleParallel.h"
 
@@ -23,7 +23,7 @@ main()
   
   int* a = new int[size];
   ...
-  Initialize a
+  //Initialize a
   ...
   
   std::vector<int> counts(parallel.getNumThreads());
@@ -51,7 +51,7 @@ main()
 
 Partitioner make a decision how to distribute tasks.
 
-```cmake
+```c++
 class IPartitioner
 	{
 	public:
@@ -64,6 +64,8 @@ You can easily make your own partitioner. Just inherit IPartitioner and implemen
 
 * ready() is called when parallel_for is be called on main thread.
 * getNext() is called to get next task index. You must design it thread safely.
+
+If you want to get sample codes. See StaticPartitioner.cpp and DynamicPartitioner.cpp
 
 #Performance
 
