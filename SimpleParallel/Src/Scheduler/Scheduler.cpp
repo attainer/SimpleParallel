@@ -35,7 +35,7 @@ namespace SimpleParallel
 
 	void Scheduler::ready(int& start, int& end, Task& task, IPartitioner*& partitioner)
 	{
-		m_nRunningThread = getNumThreads();
+		m_nRunningThread = static_cast<int>(getNumThreads());
 
 		m_task = task;
 

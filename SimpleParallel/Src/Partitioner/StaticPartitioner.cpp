@@ -33,8 +33,8 @@ namespace SimpleParallel
 
 		int length = end - start;
 		assert(length > 0);
-		int division = length / numThreads;
-		int remainder = length % numThreads;
+		int division = length / static_cast<int>(numThreads);
+		int remainder = length % static_cast<int>(numThreads);
 
 
 		int count = start;
@@ -51,7 +51,7 @@ namespace SimpleParallel
 
 	inline bool StaticPartitioner::getNext(int& out)
 	{
-		int threadIndex = Scheduler::getCurrentThreadIndex();
+		size_t threadIndex = Scheduler::getCurrentThreadIndex();
 		if (m_currentIndexes[threadIndex] < m_endIndexes[threadIndex])
 		{
 			out = m_currentIndexes[threadIndex]++;
