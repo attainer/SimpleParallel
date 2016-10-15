@@ -6,7 +6,7 @@ This is a simple parallel library. You can easilly modify to fit your projects.
 ```cmake
 #include "SimpleParallel.h"
 
-void Scheduler::parallel_for(int start, int end, Task task, IPartitioner* partitioner = DynamicPartitioner::get());
+void Scheduler::parallel_for(int start, int end, std::function<void(int)> task, IPartitioner* partitioner = DynamicPartitioner::get());
 size_t Scheduler::getNumThreads();
 static size_t Scheduler::getCurrentThreadIndex();
 ```
@@ -71,7 +71,8 @@ You must check processing time before you use simpleParrallel. This is test for 
 
 This is a result in 3-core CPU.
 
-```Serial processing
+```
+Serial processing
 primes: 123149
 elapsed time: 6877ms
 
