@@ -151,4 +151,4 @@ elapsed time: 2255ms
 #Tips
 
 * Make scheduler object as static. When scheduler be created, threads are created. When schduler be removed, threads are removed. If you want to get a better performance, Create scheduler just one time and do not remove until program be ended.
-* If all tasks spend similar time, Use StaticPartitioner. It spend a low time for scheduling indices than DynamicPartitioner.
+* If all tasks take similar time, Use StaticPartitioner. It spend a low time for scheduling indices than DynamicPartitioner.
