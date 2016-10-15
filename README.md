@@ -60,7 +60,36 @@ class IPartitioner
 	};
 ```
 
-You can easily make your own partitioner. Just inherit IPartitioner and implementation 2 functions.
+You can easily make your own partitioner. Just inherit IPartitioner and implement 2 functions.
 
 ready() is called when parallel_for is be called on main thread.
 getNext() is called to get next task index. You must design it thread safely.
+
+#Performance
+
+SimpleParallel is little "slow" then openMP and PPL. you must check processing time before you use simpleParrallel. Test the performance.cpp
+
+This is a result in 3-core CPU.
+
+```
+Serial processing
+primes: 123284
+elapsed time: 6558ms
+
+SimpleParallel
+primes: 123284
+elapsed time: 2282ms
+
+OpenMP
+primes: 123284
+elapsed time: 2253ms
+
+PPL
+primes: 123284
+elapsed time: 2264ms
+```
+
+In 3-core CPU, result is like this.
+
+
+
