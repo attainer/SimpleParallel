@@ -46,11 +46,11 @@ static SimpleParallel::Scheduler parallel;
 
 parallel.getNumThreads();
 
-//return a number of threads. Default is the number of your cpus;
+//return a number of threads. Default is the number of your processors;
 ```
 
 static size_t Scheduler::getCurrentThreadIndex();
-* Return a index of current CPU
+* Return a index of current thread
 
 ```c++
 #include "SimpleParallel.h"
