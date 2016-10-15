@@ -62,8 +62,8 @@ class IPartitioner
 
 You can easily make your own partitioner. Just inherit IPartitioner and implement 2 functions.
 
-ready() is called when parallel_for is be called on main thread.
-getNext() is called to get next task index. You must design it thread safely.
+* ready() is called when parallel_for is be called on main thread.
+* getNext() is called to get next task index. You must design it thread safely.
 
 #Performance
 
