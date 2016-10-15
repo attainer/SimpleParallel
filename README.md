@@ -1,5 +1,5 @@
 # SimpleParallel
-This is a simple parallel library. You can easilly modify to fit your projects.
+This is a simple parallel programming library for c++. You can easily modify to fit your projects. 
 
 # Usage
 
