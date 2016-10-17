@@ -52,7 +52,10 @@ namespace SimpleParallel
 	void Scheduler::wait()
 	{
 		std::unique_lock<std::mutex> lock(m_endAllMutex);
-		m_endAllCV.wait(lock, [this]() {return m_nRunningThread == 0; });
+		if (m_nRunningThread > 0)
+		{
+			m_endAllCV.wait(lock, [this]() {return m_nRunningThread == 0; });
+		}
 	}
 
 	size_t Scheduler::getNumThreads()
