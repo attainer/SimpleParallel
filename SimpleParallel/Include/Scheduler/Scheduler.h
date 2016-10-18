@@ -31,17 +31,24 @@ namespace SimpleParallel
 	private:
 		std::vector<std::thread> m_threads;
 
+		//Main thread wait other threads being ready.
+		std::condition_variable m_readyCV;
+
+		//Other threads wait main thread call run.
 		std::mutex m_waitNewMutex;
 		std::condition_variable m_waitNewCV;
 
-		std::mutex m_endAllMutex;
-		std::condition_variable m_endAllCV;
+		//Main thread wait other threads being end.
+		std::mutex m_endMutex;
+		std::condition_variable m_endCV;
 
 		Task m_task;
 
 		IPartitioner* m_partitioner = DynamicPartitioner::get();
 
-		std::atomic<int> m_nRunningThread = 0;
+		std::atomic<int> m_nRunningThreads = 0;
+		std::atomic<int> m_nReadyThreads = 0;
+
 
 		std::atomic<bool> m_stop = false;
 	};

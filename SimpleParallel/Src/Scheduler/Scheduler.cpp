@@ -35,27 +35,25 @@ namespace SimpleParallel
 
 	void Scheduler::ready(int& start, int& end, Task& task, IPartitioner*& partitioner)
 	{
-		m_nRunningThread = static_cast<int>(getNumThreads());
-
 		m_task = task;
 
 		m_partitioner = partitioner;
 		m_partitioner->ready(start, end, getNumThreads());
+
+		m_nRunningThreads = static_cast<int>(getNumThreads());
 	}
 
 	void Scheduler::execute()
 	{
 		std::unique_lock<std::mutex> lock(m_waitNewMutex);
+		m_readyCV.wait(lock, [this]() {return m_nReadyThreads == getNumThreads(); });
 		m_waitNewCV.notify_all();
 	}
 
 	void Scheduler::wait()
 	{
-		std::unique_lock<std::mutex> lock(m_endAllMutex);
-		if (m_nRunningThread > 0)
-		{
-			m_endAllCV.wait(lock, [this]() {return m_nRunningThread == 0; });
-		}
+		std::unique_lock<std::mutex> lock(m_endMutex);
+		m_endCV.wait(lock, [this]() {return m_nRunningThreads == 0; });
 	}
 
 	size_t Scheduler::getNumThreads()
@@ -76,9 +74,15 @@ namespace SimpleParallel
 
 		while (true)
 		{
+			//Notify Ready and Wait Run
 			{
 				std::unique_lock<std::mutex> lock(m_waitNewMutex);
+
+				m_nReadyThreads++;
+				m_readyCV.notify_all();
 				m_waitNewCV.wait(lock);
+				
+				m_nReadyThreads--;
 			}
 
 
@@ -90,10 +94,11 @@ namespace SimpleParallel
 			if (m_stop)
 				break;
 
+			//Notify End
 			{
-				std::unique_lock<std::mutex> lock(m_endAllMutex);
-				m_nRunningThread--;
-				m_endAllCV.notify_all();
+				std::unique_lock<std::mutex> lock(m_endMutex);
+				m_nRunningThreads--;
+				m_endCV.notify_all();
 			}
 		}
 	}
