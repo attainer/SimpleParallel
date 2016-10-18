@@ -86,7 +86,7 @@ namespace SimpleParallel
 			}
 
 
-			while (m_partitioner->getNext(current) && !m_stop)
+			while (!m_stop && m_partitioner->getNext(current))
 			{
 				m_task(current);
 			}
