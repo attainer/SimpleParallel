@@ -70,7 +70,7 @@ parallel.parallel_for(0, 1000, [](int i)
 });
 ```
 
-#Example
+# Example
 ```c++
 
 #include "SimpleParallel.h"
@@ -107,7 +107,7 @@ main()
 }
 ```
 
-#Partitioner
+# Partitioner
 
 Partitioner make a decision how to distribute tasks.
 
@@ -127,7 +127,7 @@ You can easily make your own partitioner. Just inherit IPartitioner and implemen
 
 If you want to get sample codes. See StaticPartitioner.cpp and DynamicPartitioner.cpp
 
-#Performance
+# Performance
 
 You must check processing time before you use simpleParrallel. This is processing time for performance.cpp
 
@@ -151,7 +151,7 @@ primes: 123149
 elapsed time: 2255ms
 ```
 
-#Tips
+# Tips
 
 * Make scheduler object as static. When scheduler be created, threads are created. When schduler be removed, threads are removed. If you want to get a better performance, Create scheduler just one time and do not remove until program be ended.
 * If all tasks take similar time, Use StaticPartitioner. It spend a low time for scheduling indices than DynamicPartitioner.
